@@ -15,6 +15,20 @@
 | Infrastruktura| `Docker & Docker Compose` | 
 |               |                         |
 
+```mermaid
+graph LR
+    User[Użytkownik] -->|Przeglądarka| FE[Frontend: React + Vite]
+    FE -->|Fetch/Axios| BE[Backend: FastAPI]
+    
+    subgraph Serwer
+    BE -->|Zapytanie| Redis[(Cache: Redis)]
+    BE -->|Zapis/Odczyt| DB[(Baza: SQLite)]
+    end
+    
+    BE -->|HTTP Request| API[Zewnętrzne API: GIOŚ/OpenAQ]
+    API -->|JSON| BE
+```
+>Backend działa jako serwer pośredniczący (proxy). Zgodnie z wymaganiami, przed zapytaniem do zewnętrznego API sprawdza dostępność danych w Cache (Redis) lub bazie (SQLite), aby zminimalizować liczbę zapytań i przyspieszyć czas odpowiedzi.
 
 ### 🚀 Jak uruchomić projekt lokalnie?
 > [!NOTE]
@@ -28,14 +42,14 @@ Wymagania wstępne:
 ## Kroki:
 
 ### 1. Sklonuj repozytorium:
-- ```javascript
+- ```bash
   git clone https://github.com/Thorvayne/Projet-Monitor-Jakosci-Powietrza.git
   ```
-- ```javascript
+- ```bash
   cd Projet-Monitor-Jakosci-Powietrza
   ```
 ### 2. Uruchom kontenery:
-- ```javascript
+- ```bash
   docker-compose up --build
   ```
 ### 3. Dostęp do aplikacji:
