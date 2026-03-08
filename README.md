@@ -42,7 +42,7 @@ Kroki:
     
     Jakub Kołodyński: Analityk (Power BI, Pandas) 
     
-    Hubert Przybylski: Tech Lead / DevOps (GitHUb Docker, CI/CD, Cloud Run) 
+    Hubert Przybylski: Tech Lead / DevOps (Github, Docker, CI/CD, Cloud Run) 
 
 ⚙️ CI/CD (GitHub Actions)
 
