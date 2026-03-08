@@ -3,8 +3,8 @@
  ### Projekt zespołowy mający na celu prezentowanie aktualnej jakości powietrza z API (GIOŚ/OpenAQ). 
 
 ***
- 
-## 🛠 Technologie:
+
+ ## 🛠 Technologie:
 
 |               |                         |
 |:-------------:|:-----------------------:|
@@ -17,27 +17,28 @@
 
 
 ### 🚀 Jak uruchomić projekt lokalnie?
+> [!NOTE]
+>>Zgodnie z wymaganiem RNF-02, system można uruchomić za pomocą Dockera.
 
->Zgodnie z wymaganiem RNF-02, system można uruchomić za pomocą Dockera.
-
-### Wymagania wstępne:
+Wymagania wstępne:
 
 **`Zainstalowany Docker Desktop oraz Git.`**
-    
+
+
 ## Kroki:
 
-### 1.Sklonuj repozytorium:
+### 1. Sklonuj repozytorium:
 - ```javascript
   git clone https://github.com/Thorvayne/Projet-Monitor-Jakosci-Powietrza.git
   ```
 - ```javascript
   cd Projet-Monitor-Jakosci-Powietrza
   ```
-### 2.Uruchom kontenery:
+### 2. Uruchom kontenery:
 - ```javascript
   docker-compose up --build
   ```
-### 3.Dostęp do aplikacji:
+### 3. Dostęp do aplikacji:
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8000
 - Dokumentacja API (Swagger): http://localhost:8000/docs
