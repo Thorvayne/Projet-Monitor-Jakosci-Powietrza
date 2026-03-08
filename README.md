@@ -1,6 +1,6 @@
 # 🌍 Monitor Jakości Powietrza (Grupa AA)
-
- ### Projekt zespołowy mający na celu prezentowanie aktualnej jakości powietrza z API (GIOŚ/OpenAQ). 
+>[!IMPORTANT]
+>### Projekt zespołowy mający na celu prezentowanie aktualnej jakości powietrza z API (GIOŚ/OpenAQ). 
 
 ***
 
