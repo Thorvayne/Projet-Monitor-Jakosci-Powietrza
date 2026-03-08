@@ -40,7 +40,12 @@ Kroki:
     Krzysztof Kaczan: Backend (FastAPI, Redis, SQLite) 
     
     Jakub Kołodyński: Analityk (Power BI, Pandas) 
-    
+
+
+
+
+
+    pozdrawiam Krzysztof mam dostęp 
     Hubert Przybylski: Tech Lead / DevOps (Docker, CI/CD, Cloud Run) 
 
 ⚙️ CI/CD (GitHub Actions)
