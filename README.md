@@ -3,7 +3,8 @@
 Projekt zespołowy mający na celu prezentowanie aktualnej jakości powietrza z API (GIOŚ/OpenAQ).
 
     
-    🛠 Technologie:
+🛠 Technologie:
+
     - Frontend: React + Vite 
     - Backend: FastAPI + Python 
     - Cache: Redis 
