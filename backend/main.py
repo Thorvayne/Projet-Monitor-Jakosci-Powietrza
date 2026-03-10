@@ -4,4 +4,4 @@ app = FastAPI(title="Air Quality API")
 
 @app.get("/")
 def read_root():
-    return {"message": "Backend działa! Czekanko na kod Krzyśka."}
+    return {"message": "Backend działa! Czekanko na kod."}
