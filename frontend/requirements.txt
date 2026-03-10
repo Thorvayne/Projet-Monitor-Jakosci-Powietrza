@@ -1,1 +1,5 @@
-#jak będą jakieś do pobrania biblioteki czy coś w przypadku i frontendu i backendu to tutaj, by później można było zrobić by automatycznie wszystkie pobrało na nowym urządzeniu
+fastapi
+uvicorn
+httpx
+redis
+pydantic
