@@ -36,4 +36,4 @@ jobs:
           service: 'monitor-jakosci-powietrza'
           image: 'gcr.io/monitor-jakosci-powietrza/monitor-app' # Upewnij się, że masz takie repo w Artifact Registry
           region: 'europe-central2'
-          flags: '--allow-unauthenticated'
+          flags: '--allow-unauthenticated --service-account=monitor-jp@monitor-jakosci-powietrza.iam.gserviceaccount.com'
