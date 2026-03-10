@@ -1,33 +1,39 @@
-name: CI Monitor Jakości Powietrza
+name: CI/CD Pipeline - Monitor Jakości Powietrza
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
-      - name: Pobranie kodu z repozytorium
+      - name: Pobranie kodu
         uses: actions/checkout@v4
 
-      - name: Konfiguracja Pythona (Backend)
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Instalacja lintera (flake8)
+      - name: Instalacja lintera
         run: pip install flake8
 
-      - name: Linting - sprawdzanie czystości kodu
-        run: |
-          # Sprawdza krytyczne błędy w folderze backend 
-          flake8 backend/ --count --select=E9,F63,F7,F82 --show-source --statistics
+      - name: Linting
+        run: flake8 backend/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Testowe budowanie obrazów Docker
-        run: |
-          # Weryfikacja RNF-02 (uruchomienie lokalne przez Docker Compose) [cite: 45, 143]
-          docker compose build
+      - name: Uwierzytelnianie w Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: 'projects/84238721965/locations/global/workloadIdentityPools/github-pool/providers/github-project'
+          service_account: 'monitor-jp@monitor-jakosci-powietrza.iam.gserviceaccount.com'
+
+      - name: Konfiguracja Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy na Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: 'monitor-jakosci-powietrza'
+          image: 'gcr.io/monitor-jakosci-powietrza/monitor-app' # Upewnij się, że masz takie repo w Artifact Registry
+          region: 'europe-central2'
+          flags: '--allow-unauthenticated'
