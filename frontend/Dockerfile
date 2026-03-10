@@ -1,13 +1,14 @@
-FROM python:3.11-slim
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Jeśli Wika wygeneruje projekt, skopiujemy paczki. Jeśli nie, kontener i tak wystartuje.
+COPY package.json package-lock.json* ./
+RUN npm install || echo "Brak package.json, pomijam instalację."
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 5173
 
-# Komenda uruchamiająca serwer developerski z przeładowywaniem na żywo
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# Odpalenie Vite w trybie nasłuchiwania na wszystkie interfejsy
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
