@@ -22,22 +22,31 @@ jobs:
         run: flake8 backend/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Uwierzytelnianie w Google Cloud
+        id: auth
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: 'projects/704282853205/locations/global/workloadIdentityPools/github-pool/providers/github-project'
           service_account: 'monitor-jp@monitor-jakosci-powietrza.iam.gserviceaccount.com'
+          token_format: 'access_token'
 
-      - name: Konfiguracja Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+      - name: Logowanie do Artifact Registry
+        uses: docker/login-action@v3
+        with:
+          registry: europe-central2-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
 
-      - name: Budowanie i wypychanie obrazu (Cloud Build)
-        run: |
-          gcloud builds submit --tag gcr.io/monitor-jakosci-powietrza/monitor-app .
+      - name: Budowanie i wypychanie obrazu
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: europe-central2-docker.pkg.dev/monitor-jakosci-powietrza/monitor-repo/monitor-app:latest
 
       - name: Deploy na Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: 'monitor-jakosci-powietrza'
-          image: 'gcr.io/monitor-jakosci-powietrza/monitor-app'
+          image: 'europe-central2-docker.pkg.dev/monitor-jakosci-powietrza/monitor-repo/monitor-app:latest'
           region: 'europe-central2'
           flags: '--allow-unauthenticated --service-account=monitor-jp@monitor-jakosci-powietrza.iam.gserviceaccount.com'
