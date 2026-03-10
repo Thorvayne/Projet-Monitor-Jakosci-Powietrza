@@ -2,18 +2,15 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Kopiujemy plik z wymaganiami z podfolderu backend
 COPY backend/requirements.txt .
-
-# Instalujemy zależności
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Kopiujemy resztę kodu (zakładając, że chcesz skopiować wszystko)
 COPY . .
 
-# Jeśli Twoja aplikacja startuje z pliku w folderze backend, to wskazujemy ścieżkę
+# Cloud Run używa portu 8080 jako domyślnego
 ENV PORT=8080
 EXPOSE 8080
 
-# Podstawiamy tutaj komendę, którą uruchamiasz backend
-CMD ["python", "backend/main.py"]
+# Używamy gunicorn (zalecane dla środowisk produkcyjnych jak Cloud Run)
+# Jeśli nie masz gunicorna, zainstaluj go w requirements.txt
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 backend.main:app
