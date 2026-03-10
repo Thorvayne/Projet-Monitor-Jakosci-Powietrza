@@ -1,0 +1,33 @@
+name: CI Monitor Jakości Powietrza
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobranie kodu z repozytorium
+        uses: actions/checkout@v4
+
+      - name: Konfiguracja Pythona (Backend)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalacja lintera (flake8)
+        run: pip install flake8
+
+      - name: Linting - sprawdzanie czystości kodu
+        run: |
+          # Sprawdza krytyczne błędy w folderze backend 
+          flake8 backend/ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Testowe budowanie obrazów Docker
+        run: |
+          # Weryfikacja RNF-02 (uruchomienie lokalne przez Docker Compose) [cite: 45, 143]
+          docker compose build
