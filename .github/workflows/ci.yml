@@ -30,10 +30,14 @@ jobs:
       - name: Konfiguracja Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
+      - name: Budowanie i wypychanie obrazu (Cloud Build)
+        run: |
+          gcloud builds submit --tag gcr.io/monitor-jakosci-powietrza/monitor-app .
+
       - name: Deploy na Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: 'monitor-jakosci-powietrza'
-          image: 'gcr.io/monitor-jakosci-powietrza/monitor-app' # Upewnij się, że masz takie repo w Artifact Registry
+          image: 'gcr.io/monitor-jakosci-powietrza/monitor-app'
           region: 'europe-central2'
           flags: '--allow-unauthenticated --service-account=monitor-jp@monitor-jakosci-powietrza.iam.gserviceaccount.com'
