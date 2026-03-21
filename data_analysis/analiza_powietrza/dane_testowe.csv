@@ -1,0 +1,11 @@
+city;timestamp;source;PM10;PM2.5;classification
+Warszawa;2026-03-09 08:00;GIOS;45;20;dobry
+Warszawa;2026-03-09 12:00;GIOS;65;35;zły
+Kraków;2026-03-09 08:00;OpenAQ;120;80;bardzo zły
+Kraków;2026-03-09 12:00;OpenAQ;95;60;zły
+Wrocław;2026-03-09 08:00;GIOS;30;15;dobry
+Wrocław;2026-03-09 12:00;GIOS;55;30;zły
+Gdańsk;2026-03-09 08:00;OpenAQ;20;10;dobry
+Gdańsk;2026-03-09 12:00;OpenAQ;25;12;dobry
+Poznań;2026-03-09 08:00;GIOS;80;50;zły
+Poznań;2026-03-09 12:00;GIOS;115;75;bardzo zły
