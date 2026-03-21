@@ -1,0 +1,11 @@
+# Bazy danych
+*.db
+*.sqlite3
+
+# Pliki tymczasowe Pythona
+__pycache__/
+*.pyc
+
+# Środowiska wirtualne (jeśli kiedyś stworzysz)
+venv/
+env/
