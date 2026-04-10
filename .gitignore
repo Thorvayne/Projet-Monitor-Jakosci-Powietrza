@@ -1,0 +1,18 @@
+# Zależności Frontendu
+node_modules/
+dist/
+.DS_Store
+
+# Zależności Backendu (Python)
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+
+# Zmienne środowiskowe i tajne klucze
+.env
+
+# Baza danych (jeśli plikowa, np. SQLite)
+*.db
+*.sqlite3
