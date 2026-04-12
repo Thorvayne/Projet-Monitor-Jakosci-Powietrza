@@ -248,7 +248,7 @@ function App() {
                     <select 
                       value={data.station_id || ""} 
                       onChange={(e) => setSelectedStationId(e.target.value)}
-                      className="text-[10px] p-2.5 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-400 outline-none w-full max-w-[300px] mx-auto block text-center uppercase tracking-widest cursor-pointer hover:bg-gray-100 transition font-bold"
+                      className="text-[10px] p-2.5 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-black focus:ring-2 focus:ring-blue-400 outline-none w-full max-w-[300px] mx-auto block text-center uppercase tracking-widest cursor-pointer hover:bg-gray-100 transition font-bold"
                     >
                       {data.available_stations.map(st => (
                         <option key={st.id} value={st.id}>{st.name}</option>
