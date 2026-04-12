@@ -151,7 +151,7 @@ function App() {
   const status = data ? getStatus(data.aqi, data.status_text) : null
 
   return (
-    <div className={`${dark ? 'bg-gray-900 text-white' : 'bg-gradient-to-br from-blue-100 to-blue-300'} min-h-screen transition-colors duration-500`}>
+    <div className={`${dark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} min-h-screen transition-colors duration-500`}>
       
       {/* NAVBAR */}
       <div className="flex justify-between items-center p-4">
