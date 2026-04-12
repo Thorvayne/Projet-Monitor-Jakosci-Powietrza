@@ -200,7 +200,7 @@ function App() {
           
           {/* WYSZUKIWANIE */}
           <div className="flex gap-2 mb-6 w-full">
-            <input type="text" placeholder="Wpisz miasto..." value={inputCity} onChange={e => setInputCity(e.target.value)} className="flex-1 p-3 rounded-xl border-none shadow-md focus:ring-4 focus:ring-blue-400 text-black outline-none font-medium" />
+            <input type="text" placeholder="Wpisz miasto..." value={inputCity} onChange={e => setInputCity(e.target.value)} className="flex-1 p-3 rounded -xl border border-gray-200 shadow-md outline-none font-medium bg-white text-black dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-black" />
             <button onClick={() => { if (inputCity) handleCityChange(inputCity); setInputCity(''); }} className="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-xl font-bold shadow-md transition">Szukaj</button>
           </div>
 
