@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+httpx
+geopy
+redis
+pydantic
+sqlalchemy
+aiosqlite
+passlib[bcrypt]
